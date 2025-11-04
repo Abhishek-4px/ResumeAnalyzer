@@ -8,7 +8,7 @@ def get_groq_api_key():
     except:
         pass
     
-    api_key = os.getenv("GROQ_API_KEY")   # added just for local sessions
+    api_key = os.getenv("GROQ_API_KEY")   # I have added just for local sessions
     if not api_key:
         raise ValueError("GROQ_API_KEY not found.") 
     return api_key
@@ -96,12 +96,12 @@ def summarize_resume_projects(resume_text, model="llama-3.3-70b-versatile"):
             ],
             model=model,
             temperature=0.7, # most research papers suggest randomness between 0.5-0.7
-            max_tokens=4096,
+            max_tokens=4096, 
             top_p=1,         # nucleus sampling , I have alr used temp so no need
-            stream=False  # false as it is hectic live typing of chunks
+            stream=False     # false as it is hectic live typing of chunks
         )
         
-        return chat_completion.choices[0].message.content  # extracting the 1st response
+        return chat_completion.choices[0].message.content  # extracting the 1st response from json op
     
     except Exception as e:
         raise Exception(f"Error generating summary with Groq: {str(e)}")
